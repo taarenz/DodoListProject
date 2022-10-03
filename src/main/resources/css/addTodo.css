@@ -1,0 +1,98 @@
+.background {
+    -fx-background-color: transparent;
+}
+
+.title-field {
+    -fx-border-width: 2px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+
+    -fx-prompt-text-fill: grey;
+
+    -fx-text-fill: #cc7722;
+    -fx-text-alignment: center;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 5.0, 5.0);
+}
+
+.text-area {
+    -fx-background-color: #cc7722;
+
+    -fx-prompt-text-fill: grey;
+
+    -fx-text-fill: #cc7722;
+
+    /* Shadow effect */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 5.0, 5.0);
+}
+.text-area .content {
+    -fx-background-color: rgba(218, 201, 77, 0.85);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.text-area:focused .content {
+    -fx-background-color: rgba(218, 201, 77, 0.85);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+* {
+    -fx-primary-color: #cc7722;
+    -fx-secondary-color: rgba(218, 201, 77, 0.85);
+    -fx-light-grey-color: #d1d1d1;
+
+    -fx-focus-color: -fx-secondary-color;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: -fx-primary-color;
+    -fx-background-radius: 0;
+}
+.date-picker .arrow-button:hover {
+    -fx-background-color: -fx-secondary-color;
+}
+.date-picker .arrow-button .arrow {
+    -fx-background-color: white;
+}
+.date-picker .cell {
+    -fx-background-color: white;
+}
+.date-picker .cell:hover {
+    -fx-background-color: -fx-light-grey-color;
+}
+.date-picker .cell:focused {
+    -fx-background-color: -fx-light-grey-color;
+}
+.date-picker .selected {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+.date-picker .selected:focused {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+.date-picker-popup  {
+    -fx-border-color: transparent;
+}
+.date-picker-popup .month-year-pane {
+    -fx-background-color: -fx-primary-color;
+}
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: white;
+}
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: -fx-secondary-color;
+}
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: white;
+}
+
+.date-picker > .text-field {
+    -fx-text-fill: #cc7722;
+    -fx-prompt-text-fill: grey;
+    -fx-background-color: rgba(218, 201, 77, 0.85);
+    -fx-border-radius: 5px, 0px, 0px, 0px;
+    -fx-border-width: 2px;
+    -fx-border-color: #cc7722 ;
+}
