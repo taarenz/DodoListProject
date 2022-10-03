@@ -41,50 +41,10 @@
     -fx-font-family: "Arial Black";
 }
 
-.bottone-menu-modifica {
-    -fx-background-radius: 25px;
-    -fx-background-color: rgba(227, 211, 114, 0.85);
-
-    -fx-border-radius: 25px;
-    -fx-border-color: #cc7722;
-    -fx-border-width: 5px;
-
-    /* testo dentro bottone */
-    -fx-text-fill: #cc7722;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial Black";
-}
-
-.bottone-menu-elimina {
-    -fx-background-radius: 25px;
-    -fx-background-color: rgba(227, 211, 114, 0.85);
-
-    -fx-border-radius: 25px;
-    -fx-border-color: #cc7722;
-    -fx-border-width: 5px;
-
-    /* testo dentro bottone */
-    -fx-text-fill: #cc7722;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial Black";
-}
-
 .bottone-menu-crea:hover {
     -fx-background-color: #34f634;
     -fx-border-color: #005000;
     -fx-text-fill: #005000;
-}
-
-.bottone-menu-modifica:hover {
-    -fx-background-color: #2596ff;
-    -fx-border-color: #004fff;
-    -fx-text-fill: #004fff;
-}
-
-.bottone-menu-elimina:hover{
-    -fx-background-color: rgb(255, 91, 91);
-    -fx-border-color: #ff0000;
-    -fx-text-fill: #ff0000;
 }
 
 .bottone-menu-crea:pressed{
@@ -93,14 +53,4 @@
     -fx-text-fill: #005000;
 }
 
-.bottone-menu-modifica:pressed {
-    -fx-background-color: #1c5dfa;
-    -fx-border-color: #004fff;
-    -fx-text-fill: #004fff;
-}
 
-.bottone-menu-elimina:pressed {
-    -fx-background-color: #fa4040;
-    -fx-border-color: #ff0000;
-    -fx-text-fill: #ff0000;
-}

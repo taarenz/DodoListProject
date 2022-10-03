@@ -1,5 +1,8 @@
 package main.app;
 
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +34,7 @@ public class MainController implements Initializable{
     private Scene scene;
 
     @FXML
-    private GridPane gridPaneTodo;  // griglia dove saranno riposti i vari postit con all'interno la todo
+    private GridPane gridPaneTodo = new GridPane();  // griglia dove saranno riposti i vari postit con all'interno la todo
     @FXML
     private ScrollPane scrollPane;  // serve per permettere di scorrere la lista
 
@@ -41,7 +44,7 @@ public class MainController implements Initializable{
     private Button bottoneCreaTodo;
 
     // contiene tutti i dodo che bisogna inserire
-    private List<TodoItem> listaTodo = new ArrayList<>();
+    static public List<TodoItem> listaTodo = new ArrayList<>();
 
     // indica la riga dela matrice a cui si è arrivati
     private int righeGrid = 0;
@@ -53,7 +56,7 @@ public class MainController implements Initializable{
         scrollPane.setFitToWidth(true);
 
         try {
-            for(int i=0; i<listaTodo.size(); i++){
+            for(int i=0; i<listaTodo.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("todoItem.fxml"));
                 AnchorPane box = fxmlLoader.load();
@@ -64,11 +67,14 @@ public class MainController implements Initializable{
                 controllerTodo.setData(listaTodo.get(i));
 
                 gridPaneTodo.add(box, 0, ++righeGrid);
-
             }
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println(listaTodo.toString());
     }
 
     // metodo che permette di aggiungere un dodo alla lista
@@ -85,6 +91,21 @@ public class MainController implements Initializable{
         stage.setTitle("Aggiunta DODO");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void aggiungiOggettoLista(TodoItem item) throws IOException {
+        listaTodo.add(item);
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("todoItem.fxml"));
+        AnchorPane box = fxmlLoader.load();
+
+        GridPane.setMargin(box, new Insets(20, 0, 0, 20));
+
+        TodoController controllerTodo = fxmlLoader.getController();
+        controllerTodo.setData(item);
+
+        gridPaneTodo.add(box, 0, ++righeGrid);
     }
 
 }

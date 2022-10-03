@@ -2,14 +2,13 @@ package main.app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import model.TodoItem;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 public class AggiungiTodoController implements Initializable {
@@ -29,11 +28,69 @@ public class AggiungiTodoController implements Initializable {
     private Button confermaButton;
 
     @FXML
-    private Button annulla;
+    private Button annullaButton;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        textAreaDescrizione.setWrapText(true);
+        textAreaDescrizione.setWrapText(true); // permette di bloccare lo scorrimento laterale della text area
+        datePicker.getEditor().setEditable(true);  // disabilita la possibilità di editare i text field del dp
+    }
+
+    // quando si clicca il bottone aggiungi
+    @FXML
+    public void creaOggettoTODO () throws ParseException {
+        MainController controller = new MainController();
+        // formato della data
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        // verifica che tutti i campi siano compilati
+        if(fieldCheck()){
+            // check corretto
+            // creazione dell'oggetto
+            try {
+                String titolo = textFieldTitolo.getText();
+                String descrizione = textAreaDescrizione.getText();
+                String data = ft.format(ft.parse(this.datePicker.getValue().toString()));
+
+                System.out.println(titolo);
+                System.out.println(descrizione);
+                System.out.println(data);
+
+                TodoItem item = new TodoItem(titolo, descrizione, data);
+
+                controller.aggiungiOggettoLista(item);
+
+                System.out.println(controller.listaTodo.toString());
+
+            } catch (Exception e){
+                System.out.println(e.toString());
+                Alert alert = new Alert(Alert.AlertType.WARNING, "ERRORE, Inserire correttamente tutti i campi.\n(La data va inserita nel seguente formato (YYYY-MM-DD).");
+                alert.showAndWait();
+            }
+
+        } else{
+            // pop up errore
+            Alert alert = new Alert(Alert.AlertType.WARNING, "ERRORE, Inserire correttamente tutti i campi.");
+            alert.showAndWait();
+        }
+    }
+
+    private boolean fieldCheck() {
+        // verifica del titolo
+        if(textFieldTitolo.getText() == ""){
+            return false;
+        }
+
+        // verifica della descrizione
+        if(textAreaDescrizione.getText() == ""){
+            return false;
+        }
+
+        // verifica del date picker
+        if(datePicker.getValue() == null) {
+            return false;
+        }
+
+        return true;
     }
 }

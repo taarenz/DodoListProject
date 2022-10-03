@@ -1,9 +1,14 @@
 .background {
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(227, 211, 114, 0.85);
+    -fx-border-width: 2px;
+    -fx-border-color: #cc7722;
 }
 
 .title-field {
-    -fx-border-width: 2px;
+    -fx-background-color: rgba(255, 217, 67, 0.82);
+
+    -fx-border-color: #cc7722;
+    -fx-border-width: 1px;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 
@@ -26,19 +31,78 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 5.0, 5.0);
 }
 .text-area .content {
-    -fx-background-color: rgba(218, 201, 77, 0.85);
+    -fx-background-color: rgba(255, 217, 67, 0.82);
     -fx-background-insets: 0;
     -fx-background-radius: 0;
 }
 .text-area:focused .content {
-    -fx-background-color: rgba(218, 201, 77, 0.85);
+    -fx-background-color: rgba(255, 217, 67, 0.82);
     -fx-background-insets: 0;
     -fx-background-radius: 0;
 }
 
+
+/* bottoni* */
+.bottone-conferma {
+    -fx-background-radius: 25px;
+    -fx-background-color: rgb(92, 206, 18);
+
+    -fx-border-radius: 25px;
+    -fx-border-color: #0d6200;
+    -fx-border-width: 1px;
+
+    /* testo dentro bottone */
+    -fx-text-fill: #0d6200;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial Black";
+}
+
+.bottone-conferma:hover {
+    -fx-background-color: #34f634;
+    -fx-border-color: #005000;
+    -fx-text-fill: #005000;
+}
+
+.bottone-conferma:pressed {
+    -fx-background-color: #028f02;
+    -fx-border-color: #005000;
+    -fx-text-fill: #005000;
+}
+
+.bottone-annulla {
+    -fx-background-radius: 25px;
+    -fx-background-color: rgba(250, 89, 89, 0.85);
+
+    -fx-border-radius: 25px;
+    -fx-border-color: #ff0000;
+    -fx-border-width: 1px;
+
+    /* testo dentro bottone */
+    -fx-text-fill: #ff0000;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial Black";
+}
+
+.bottone-annulla:hover {
+    -fx-background-color: rgb(255, 91, 91);
+    -fx-border-color: #ff0000;
+    -fx-text-fill: #ff0000;
+}
+
+.bottone-annulla:pressed {
+    -fx-background-color: #fa4040;
+    -fx-border-color: #ff0000;
+    -fx-text-fill: #ff0000;
+}
+
+
+
+/* date picker */
 * {
     -fx-primary-color: #cc7722;
-    -fx-secondary-color: rgba(218, 201, 77, 0.85);
+    -fx-secondary-color: rgba(255, 217, 67, 0.82);
     -fx-light-grey-color: #d1d1d1;
 
     -fx-focus-color: -fx-secondary-color;
@@ -87,12 +151,11 @@
 .date-picker-popup .spinner .button .right-arrow {
     -fx-background-color: white;
 }
-
 .date-picker > .text-field {
     -fx-text-fill: #cc7722;
     -fx-prompt-text-fill: grey;
-    -fx-background-color: rgba(218, 201, 77, 0.85);
+    -fx-background-color: -fx-secondary-color;
     -fx-border-radius: 5px, 0px, 0px, 0px;
-    -fx-border-width: 2px;
+    -fx-border-width: 1px;
     -fx-border-color: #cc7722 ;
 }

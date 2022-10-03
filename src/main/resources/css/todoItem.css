@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: rgba(218, 201, 77, 0.85);
-    -fx-border-width: 5px;
+    -fx-border-width: 2px;
     -fx-border-color: #cc7722;
 
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 5.0, 5.0);
