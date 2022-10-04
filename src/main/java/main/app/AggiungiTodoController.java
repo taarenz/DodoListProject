@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.TodoItem;
 
 import java.net.URL;
@@ -30,6 +31,8 @@ public class AggiungiTodoController implements Initializable {
     @FXML
     private Button annullaButton;
 
+    private MainController controller;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,7 +43,6 @@ public class AggiungiTodoController implements Initializable {
     // quando si clicca il bottone aggiungi
     @FXML
     public void creaOggettoTODO () throws ParseException {
-        MainController controller = new MainController();
         // formato della data
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         // verifica che tutti i campi siano compilati
@@ -58,9 +60,15 @@ public class AggiungiTodoController implements Initializable {
 
                 TodoItem item = new TodoItem(titolo, descrizione, data);
 
-                controller.aggiungiOggettoLista(item);
+                if(!ridondanzaCheck(item)){
+                    controller.aggiungiOggettoLista(item);
 
-                System.out.println(controller.listaTodo.toString());
+                    //chiusura popup
+                    chiusuraFinestra();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "ERRORE, E' già stato inserito un postit identico.");
+                    alert.showAndWait();
+                }
 
             } catch (Exception e){
                 System.out.println(e.toString());
@@ -92,5 +100,27 @@ public class AggiungiTodoController implements Initializable {
         }
 
         return true;
+    }
+
+    private boolean ridondanzaCheck(TodoItem item) {
+        for(int i=0; i<MainController.listaTodo.size(); i++){
+            if(item.equals(MainController.listaTodo.get(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // funzione per chiudere la finestra
+    @FXML
+    private void chiusuraFinestra() {
+        // get a handle to the stage
+        Stage stage = (Stage) annullaButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+    public void setMainController (MainController controller){
+        this.controller = controller;
     }
 }

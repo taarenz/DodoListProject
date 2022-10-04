@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class TodoItem {
     // attributi
@@ -9,15 +10,12 @@ public class TodoItem {
     private String titolo;
     private String descrizione;
     private String dataTodo;  // indica la data di quando va fatto l'impegno
-    private int id;  // indica id univoco
 
     //construttore
     public TodoItem(String titolo, String descrizione, String dataTodo) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.dataTodo = dataTodo;
-
-        this.base_id += 100;
     }
 
     public String getTitolo() {
@@ -39,5 +37,20 @@ public class TodoItem {
         this.dataTodo = dataTodo;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return Objects.equals(titolo, todoItem.titolo) && Objects.equals(descrizione, todoItem.descrizione) && Objects.equals(dataTodo, todoItem.dataTodo);
+    }
 
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "titolo='" + titolo + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", dataTodo='" + dataTodo + '\'' +
+                '}';
+    }
 }

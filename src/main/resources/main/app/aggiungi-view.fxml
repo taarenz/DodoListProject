@@ -16,7 +16,7 @@
       <TextField fx:id="textFieldTitolo" layoutX="77.0" layoutY="14.0" prefHeight="16.0" prefWidth="155.0" promptText="titolo" styleClass="title-field" stylesheets="@../../css/addTodo.css" />
       <DatePicker fx:id="datePicker" layoutX="68.0" layoutY="135.0" promptText="data impegno" stylesheets="@../../css/addTodo.css" />
       <TextArea fx:id="textAreaDescrizione" layoutX="18.0" layoutY="48.0" prefHeight="81.0" prefWidth="276.0" promptText="descizione" styleClass="text-area" stylesheets="@../../css/addTodo.css" />
-      <Button fx:id="annullaButton" layoutX="60.0" layoutY="182.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" styleClass="bottone-annulla" text="Annulla">
+      <Button fx:id="annullaButton" layoutX="60.0" layoutY="182.0" mnemonicParsing="false" onAction="#chiusuraFinestra" prefHeight="27.0" prefWidth="96.0" styleClass="bottone-annulla" text="Annulla">
          <font>
             <Font size="10.0" />
          </font>
