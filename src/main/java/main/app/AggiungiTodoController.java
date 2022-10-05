@@ -103,8 +103,8 @@ public class AggiungiTodoController implements Initializable {
     }
 
     private boolean ridondanzaCheck(TodoItem item) {
-        for(int i=0; i<MainController.listaTodo.size(); i++){
-            if(item.equals(MainController.listaTodo.get(i))){
+        for(int i=0; i<controller.getListaTodo().size(); i++){
+            if(item.equals(controller.getListaTodo().get(i))){
                 return true;
             }
         }

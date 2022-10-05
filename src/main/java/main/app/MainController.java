@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -44,7 +45,7 @@ public class MainController implements Initializable{
     private Button bottoneCreaTodo;
 
     // contiene tutti i dodo che bisogna inserire
-    static public List<TodoItem> listaTodo = new ArrayList<>();
+    private List<TodoItem> listaTodo = new ArrayList<>();
 
     // indica la riga dela matrice a cui si è arrivati
     private int righeGrid = 0;
@@ -52,7 +53,6 @@ public class MainController implements Initializable{
     // metodo initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         scrollPane.setFitToWidth(true);
     }
 
@@ -85,9 +85,23 @@ public class MainController implements Initializable{
         GridPane.setMargin(box, new Insets(20, 0, 0, 20));
 
         TodoController controllerTodo = fxmlLoader.getController();
+        controllerTodo.setMainController(this);
         controllerTodo.setData(item);
 
         gridPaneTodo.add(box, 0, ++righeGrid);
+    }
+
+    // funzione che permette di shiftare i postit all'interno del gridpane
+    public void shiftPostIt (int i) {
+        for(int y=i+1; y<gridPaneTodo.getChildren().size()-1; y++) {
+//            Node node = gridPaneTodo.getChildren().get(y+1);
+//            gridPaneTodo.getChildren().add(0,y+1,node);
+//            gridPaneTodo.getChildren().remove(0, y + 1);
+        }
+    }
+
+    public List<TodoItem> getListaTodo (){
+        return listaTodo;
     }
 
 }

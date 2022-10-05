@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import model.TodoItem;
 
 import java.net.URL;
@@ -16,6 +17,9 @@ import java.util.zip.InflaterInputStream;
 
 public class TodoController implements Initializable {
     // vars
+    @FXML
+    private AnchorPane anchorPane;
+
     @FXML
     private TextField titoloTodo;
 
@@ -29,12 +33,16 @@ public class TodoController implements Initializable {
     private Button bottoneModifica;
 
     @FXML
+    private Button bottoneElimina;
+
+    @FXML
     private Button bottoneConfermaModifica;
 
     @FXML
     private Button bottoneAnnullaModifca;
 
-
+    // dichiarazione controller
+    MainController controller;
 
     // metodo che inserisce
     public void setData(TodoItem item) {
@@ -51,6 +59,8 @@ public class TodoController implements Initializable {
     @FXML
     public void modificaElemento () {
         // instanza delle variabili temporanee
+        TodoItem newItem = new TodoItem(titoloTodo.getText(), descrizioneTodo.getText(), dataScadenzaTodo.getText());
+
         String tmpTitolo = titoloTodo.getText();
         String tmpDescrizione = descrizioneTodo.getText();
         String tmpData = dataScadenzaTodo.getText();
@@ -69,6 +79,16 @@ public class TodoController implements Initializable {
         bottoneConfermaModifica.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                // modifica dell'array
+                for(int i=0; i<controller.getListaTodo().size(); i++){
+                    if(controller.getListaTodo().get(i).equals(newItem)) {
+
+                        controller.getListaTodo().get(i).setTitolo(titoloTodo.getText());
+                        controller.getListaTodo().get(i).setDescrizione(descrizioneTodo.getText());
+                        controller.getListaTodo().get(i).setDataTodo(dataScadenzaTodo.getText());
+
+                    }
+                }
                 titoloTodo.setEditable(false);
                 descrizioneTodo.setEditable(false);
                 dataScadenzaTodo.setEditable(false);
@@ -84,6 +104,7 @@ public class TodoController implements Initializable {
                 titoloTodo.setStyle("");
                 descrizioneTodo.setStyle("");
                 dataScadenzaTodo.setStyle("");
+                System.out.println(controller.getListaTodo().toString());
             }
         });
 
@@ -105,13 +126,21 @@ public class TodoController implements Initializable {
                 titoloTodo.setStyle("");
                 descrizioneTodo.setStyle("");
                 dataScadenzaTodo.setStyle("");
+
+
             }
         });
     }
 
     @FXML
     public void eliminaElemento () {
-
+        TodoItem itemEliminare = new TodoItem(titoloTodo.getText(), descrizioneTodo.getText(), dataScadenzaTodo.getText());
+        for(int i=0; i<controller.getListaTodo().size(); i++){
+            if(controller.getListaTodo().get(i).equals(itemEliminare)) {
+                controller.shiftPostIt(i);
+                controller.getListaTodo().remove(i);
+            }
+        }
     }
 
 
@@ -128,5 +157,9 @@ public class TodoController implements Initializable {
 
         bottoneConfermaModifica.setVisible(false);
         bottoneAnnullaModifca.setVisible(false);
+    }
+
+    public void setMainController (MainController controller){
+        this.controller = controller;
     }
 }
