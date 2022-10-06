@@ -54,10 +54,6 @@ public class AggiungiTodoController implements Initializable {
                 String descrizione = textAreaDescrizione.getText();
                 String data = ft.format(ft.parse(this.datePicker.getValue().toString()));
 
-                System.out.println(titolo);
-                System.out.println(descrizione);
-                System.out.println(data);
-
                 TodoItem item = new TodoItem(titolo, descrizione, data);
 
                 if(!ridondanzaCheck(item)){

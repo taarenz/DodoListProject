@@ -4,21 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.*;
 import model.TodoItem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.zip.InflaterInputStream;
 
 public class TodoController implements Initializable {
     // vars
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     private TextField titoloTodo;
@@ -48,7 +41,7 @@ public class TodoController implements Initializable {
     public void setData(TodoItem item) {
         String titolo = item.getTitolo();
         String descrizione = item.getDescrizione();
-        String dataScadenza = item.getDataTodo().toString();
+        String dataScadenza = item.getDataTodo();
 
         // set dei valori sopra
         titoloTodo.setText(titolo);
@@ -83,15 +76,22 @@ public class TodoController implements Initializable {
                 for(int i=0; i<controller.getListaTodo().size(); i++){
                     if(controller.getListaTodo().get(i).equals(newItem)) {
 
-                        controller.getListaTodo().get(i).setTitolo(titoloTodo.getText());
-                        controller.getListaTodo().get(i).setDescrizione(descrizioneTodo.getText());
-                        controller.getListaTodo().get(i).setDataTodo(dataScadenzaTodo.getText());
+                        TodoItem newItem = new TodoItem(titoloTodo.getText(),descrizioneTodo.getText(),dataScadenzaTodo.getText());
+
+                        if(ridondanzaCheck(newItem)){
+                            Alert alert = new Alert(Alert.AlertType.WARNING, "ERRORE, E' già stato inserito un postit identico.");
+                            alert.showAndWait();
+                            return;
+                        } else {
+                            controller.getListaTodo().get(i).clone(newItem);
+                        }
 
                     }
                 }
                 titoloTodo.setEditable(false);
                 descrizioneTodo.setEditable(false);
                 dataScadenzaTodo.setEditable(false);
+
 
                 titoloTodo.setText(titoloTodo.getText());
                 descrizioneTodo.setText(descrizioneTodo.getText());
@@ -137,9 +137,11 @@ public class TodoController implements Initializable {
         TodoItem itemEliminare = new TodoItem(titoloTodo.getText(), descrizioneTodo.getText(), dataScadenzaTodo.getText());
         for(int i=0; i<controller.getListaTodo().size(); i++){
             if(controller.getListaTodo().get(i).equals(itemEliminare)) {
-                controller.shiftPostIt(i);
                 controller.getListaTodo().remove(i);
+                controller.shiftPostIt(i);
             }
+
+            System.out.println(controller.getListaTodo().toString());
         }
     }
 
@@ -157,6 +159,15 @@ public class TodoController implements Initializable {
 
         bottoneConfermaModifica.setVisible(false);
         bottoneAnnullaModifca.setVisible(false);
+    }
+
+    public boolean ridondanzaCheck(TodoItem item) {
+        for(int i=0; i<controller.getListaTodo().size(); i++){
+            if(item.equals(controller.getListaTodo().get(i))){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setMainController (MainController controller){

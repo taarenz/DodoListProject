@@ -45,6 +45,12 @@ public class TodoItem {
         return Objects.equals(titolo, todoItem.titolo) && Objects.equals(descrizione, todoItem.descrizione) && Objects.equals(dataTodo, todoItem.dataTodo);
     }
 
+    public void clone(TodoItem i){
+        this.titolo = i.titolo;
+        this.descrizione = i.descrizione;
+        this.dataTodo = i.dataTodo;
+    }
+
     @Override
     public String toString() {
         return "TodoItem{" +

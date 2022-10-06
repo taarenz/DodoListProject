@@ -93,15 +93,17 @@ public class MainController implements Initializable{
 
     // funzione che permette di shiftare i postit all'interno del gridpane
     public void shiftPostIt (int i) {
-        for(int y=i+1; y<gridPaneTodo.getChildren().size()-1; y++) {
-//            Node node = gridPaneTodo.getChildren().get(y+1);
-//            gridPaneTodo.getChildren().add(0,y+1,node);
-//            gridPaneTodo.getChildren().remove(0, y + 1);
+        ObservableList<Node> childrens = gridPaneTodo.getChildren();
+
+        for(Node node : childrens) {
+            if(gridPaneTodo.getRowIndex(node) == i+1 && gridPaneTodo.getColumnIndex(node) == 0) {
+                gridPaneTodo.getChildren().remove(node);
+                break;
+            }
         }
     }
 
     public List<TodoItem> getListaTodo (){
         return listaTodo;
     }
-
 }
